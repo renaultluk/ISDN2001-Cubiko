@@ -36,7 +36,7 @@ Download esp32 in board manager
 choose ESP32 Dev module
 braud rate 115200
 
-#Usage (important!)
+# Usage (important!)
 For espi library:
  library/TFT_eSPI/User_setup.h
  comment line 161 to line 163
