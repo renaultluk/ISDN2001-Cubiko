@@ -1,7 +1,61 @@
 #include "cubiko.h"
 
-void setTime() {
+int hours = 0;
+int minutes = 0;
+int seconds = 0;
 
+int* field_arr[3] = {&seconds, &minutes, &hours};
+int field_num = 0;
+
+int countdown_seconds = 0;
+bool countdown_active = false;
+
+// ******* temp ******* //
+bool scrollup = true;
+bool scrolldown = true;
+bool switchtimebuttonclicked = true;
+
+void showTimer() {
+
+}
+
+int toSeconds(int hours, int minutes, int seconds) {
+    return (hours * 3600) + (minutes * 60) + seconds;
+}
+
+void setTime() {
+    float last_x = 0;
+    float last_y = 0;
+    float last_z = 0;
+    while (!flipped(last_x, last_y, last_z)) {
+        if (switchtimebuttonclicked) {
+            field_num = (field_num + 1) % 3;
+        }
+        if (scrollup) {
+            if ((*field_arr[field_num] + 1 > 59) && (field_num != 2)) {
+                *field_arr[field_num+1] += 1;
+            }
+            *field_arr[field_num] = (*field_arr[field_num] + 1) % 60;
+        } 
+        if (scrolldown) {
+            *field_arr[field_num] = (*field_arr[field_num] - 1 < 0)? 0 : *field_arr[field_num] - 1;
+        }
+    }
+    countdown_seconds = toSeconds(hours, minutes, seconds);
+    showTimer();
+    countdown_active = true;
+}
+
+void countdown() {
+    while (countdown_seconds > 0) {
+        if (switchtimebuttonclicked) {
+            countdown_active = !countdown_active;
+        }
+        if (countdown_active) {
+            delay(1000);
+            countdown_seconds--;
+        }
+    }
 }
 
 void goOff() {
@@ -9,12 +63,14 @@ void goOff() {
     while (!stopped) {
         vibrate(500);
         vibrate(500, false);
-//        if (digitalRead(STOP_PIN) == HIGH) {
-//            stopped = true;
-//        }
+        if (switchtimebuttonclicked) {
+            stopped = true;
+        }
     }
 }
 
 mainState hourglassFunc() {
-  // do nothing here
+    setTime();
+    countdown();
+    goOff();
 }
