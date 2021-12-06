@@ -16,7 +16,8 @@ mainState idleFunc() {
 }
 
 void setup() {
-
+    attachInterrupt(BUTTON_PIN, button_pressed, RISING);
+    attachInterrupt(SCROLL_CHA, scrollRoutine, RISING);
 }
 
 void loop() {

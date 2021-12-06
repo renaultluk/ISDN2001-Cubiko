@@ -3,8 +3,22 @@
 
 // ******* Constants ******** //
 
-#define SCREE_WIDTH  320
-#define SCREE_HEIGHT 240
+#define SCREEN_WIDTH  320
+#define SCREEN_HEIGHT 240
+
+#define SCROLL_CHA 2
+#define SCROLL_CHB 5
+
+#define BUTTON_PIN 3
+
+#define VIBRATION_PIN 4
+
+// ******* Variables ******** //
+
+bool button_pressed = 0;
+bool scrolled = 0;
+
+int scroll_direction = 0;
 
 // ******* Finite State Machine ******** //
 
@@ -31,7 +45,10 @@ mainState pageBack();
 
 bool shaking();
 
-// ******* Buttons ******* //
+// ******* Interrupts ******* //
+
+void buttonRoutine();
+void scrollRoutine();
 
 // ******* Hourglass ******* //
 
