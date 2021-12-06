@@ -1,15 +1,15 @@
 #include "cubiko.h"
 #include "minigame.h"
 
-#define GRAVITY 0.1
+#define GRAVITY 0.5
 const int LEVEL_UP_INCREMENT = 10;
 
 // ******* Map ******* //
 
 gameMap::gameMap() {
   this->x = 0;
-  this->y = 0;
-  this->h = 0;
+  this->y = SCREEN_HEIGHT;
+  this->h = 70;
   this->sprite_index = 0;
   this->ground_index = 0;
   for (int i = 0; i < 4; i++) {
@@ -42,8 +42,8 @@ void gameMap::update(int speed) {
 // ******* Obstacle ******* //
 
 obstacle::obstacle() {
-  this->x = 0;
-  this->y = 0;
+  this->x = SCREEN_WIDTH;
+  this->y = 250;
   this->sprite_index = random(0, 3);
   this->w = 0;
   this->h = 0;
@@ -79,7 +79,8 @@ bool obstacle::collided(player p) {
 // ******* Player ******* //
 
 player::player() {
-  this->y = 100;
+  this->x = 20;
+  this->y = 70;
   this->w = 20;
   this->h = 20;
   this->y_speed = 0;
@@ -139,8 +140,8 @@ void player::jump() {
 Minigame::Minigame() {
   randomSeed(analogRead(0));
   this->obstacle_count = 0;
-  this->baseline_speed = 10;
-  this->current_speed = 10;
+  this->baseline_speed = 20;
+  this->current_speed = 20;
   this->score = 0;
   this->level = 1;
   this->highscore = 0;
