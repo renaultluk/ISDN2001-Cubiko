@@ -11,6 +11,10 @@ gameMap::gameMap() {
   this->y = 0;
   this->h = 0;
   this->sprite_index = 0;
+  this->ground_index = 0;
+  for (int i = 0; i < 4; i++) {
+    this->ground[i] = sprites[random(0, 3)];
+  }
 }
 
 int gameMap::get_x() const {
@@ -27,6 +31,12 @@ int gameMap::get_h() const {
 
 void gameMap::update(int speed) {
   this->x -= speed;
+  if (this->x + this->h < 0) {
+    for (int i = 0; i < 4; i++) {
+      ground[i] = ground[i + 1];
+    }
+    ground[3] = sprites[random(0, 3)];
+  }
 }
 
 // ******* Obstacle ******* //

@@ -25,15 +25,19 @@ class gameMap {
     private:
         int x;
         int y;
+        int w;
         int h;
         int sprites[4];
         int sprite_index;
+        int ground[4];
+        int ground_index;
     
     public:
         gameMap();
         int get_x() const;
         int get_y() const;
         int get_y_speed() const;
+        int get_w() const;
         int get_h() const;
         void update(int speed);
 };
