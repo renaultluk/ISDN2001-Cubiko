@@ -21,6 +21,7 @@ class player {
 
 class gameMap {
     private:
+        int x;
         int y;
         int h;
         int sprites[4];
@@ -28,6 +29,7 @@ class gameMap {
     
     public:
         gameMap();
+        int get_x() const;
         int get_y() const;
         int get_y_speed() const;
         int get_h() const;
