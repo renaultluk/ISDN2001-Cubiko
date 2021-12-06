@@ -59,6 +59,13 @@ void obstacle::update(int speed) {
   this->x -= speed;
 }
 
+bool obstacle::collided(player p) {
+  return (this->x < p.get_x() + p.get_w() &&
+          this->x + this->w > p.get_x() &&
+          this->y < p.get_y() + p.get_h() &&
+          this->y + this->h > p.get_y());
+}
+
 // ******* Player ******* //
 
 player::player() {
@@ -67,6 +74,10 @@ player::player() {
   this->h = 20;
   this->y_speed = 0;
   this->sprite_index = 0;
+}
+
+int player::get_x() const {
+  return this->x;
 }
 
 int player::get_y() const {

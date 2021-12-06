@@ -1,5 +1,6 @@
 class player {
     private:
+        int x;
         int y;
         int baseline_y;
         int w;
@@ -11,6 +12,7 @@ class player {
 
     public:
         player();
+        int get_x() const;
         int get_y() const;
         int get_w() const;
         int get_h() const;
