@@ -163,6 +163,22 @@ void Minigame::loop() {
     }
 }
 
+void Minigame::generate_obstacle() {
+  int random_num = random(0, 20);
+  if (random_num == 0) {
+    obstacle new_obstacle;
+    obstacles[obstacle_count] = new_obstacle;
+    obstacle_count++;
+  }
+}
+
+void Minigame::dequeue_obstacle(int index) {
+    for (int i = index; i < obstacle_count - 1; i++) {
+        obstacles[i] = obstacles[i + 1];
+    }
+    obstacle_count--;
+}
+
 mainState minigameFunc() {
     bool in_game = true;
     while (in_game) {

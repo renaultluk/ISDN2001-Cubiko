@@ -78,5 +78,6 @@ class Minigame {
     void update();
     void reset();
     void set_score(int score);
+    void generate_obstacle();
     void dequeue_obstacle(int i);
 };
