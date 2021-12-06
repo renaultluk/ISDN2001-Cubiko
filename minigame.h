@@ -19,7 +19,7 @@ class player {
         void jump();
 };
 
-class map {
+class gameMap {
     private:
         int y;
         int h;
@@ -27,7 +27,7 @@ class map {
         int sprite_index;
     
     public:
-        map();
+        gameMap();
         int get_y() const;
         int get_y_speed() const;
         int get_h() const;
@@ -56,7 +56,7 @@ class obstacle {
 class Minigame {
   private:
     player current_player;
-    map current_map;
+    gameMap current_map;
     obstacle obstacles[10];
     int obstacle_count;
     int current_speed;

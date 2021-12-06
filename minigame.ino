@@ -6,10 +6,27 @@ const int LEVEL_UP_INCREMENT = 10;
 
 // ******* Map ******* //
 
-map::map() {
+gameMap::gameMap() {
+  this->x = 0;
   this->y = 0;
   this->h = 0;
   this->sprite_index = 0;
+}
+
+int gameMap::get_x() const {
+  return this->x;
+}
+
+int gameMap::get_y() const {
+  return this->y;
+}
+
+int gameMap::get_h() const {
+  return this->h;
+}
+
+void gameMap::update(int speed) {
+  this->x -= speed;
 }
 
 // ******* Obstacle ******* //
@@ -40,10 +57,6 @@ int obstacle::get_h() const {
 
 void obstacle::update(int speed) {
   this->x -= speed;
-}
-
-void obstacle::update(int speed) {
-    this->x -= speed;
 }
 
 // ******* Player ******* //
@@ -111,6 +124,11 @@ void Minigame::update() {
         }
         else if (obstacles[i].get_x() + obstacles[i].get_h() < 0) {
             dequeue_obstacle(i);
+            this->score++;
+            if (this->score % LEVEL_UP_INCREMENT == 0) {
+                this->level++;
+                this->current_speed = this->baseline_speed * (1 + this->level/10);
+            }
         }
         else {
             obstacles[i].update(current_speed);
