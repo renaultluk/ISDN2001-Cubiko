@@ -17,6 +17,8 @@ class player {
         int get_w() const;
         int get_h() const;
         int get_y_speed() const;
+        int get_sprite_index() const;
+        void set_sprite_index(int);
         void update();
         void jump();
 };
@@ -80,7 +82,7 @@ class Minigame {
     void loop();
     void draw();
     void update();
-    void reset();
+    void gameOverScreen();
     void set_score(int score);
     void generate_obstacle();
     void dequeue_obstacle(int i);

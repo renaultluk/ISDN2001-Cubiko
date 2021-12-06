@@ -98,6 +98,22 @@ int player::get_y_speed() const {
   return this->y_speed;
 }
 
+int player::get_w() const {
+  return this->w;
+}
+
+int player::get_h() const {
+  return this->h;
+}
+
+int player::get_sprite_index() const {
+  return this->sprite_index;
+}
+
+void player::set_sprite_index(int index) {
+  this->sprite_index = index;
+}
+
 void player::update() {
     // Update player
     if (this->jumped) {
@@ -170,6 +186,13 @@ void Minigame::loop() {
     while (!game_over) {
         this->update();
         this->draw();
+    }
+}
+
+void Minigame::gameOverScreen() {
+    this->current_player.set_sprite_index(3);
+    if (this->score > this->highscore) {
+        this->highscore = this->score;
     }
 }
 
