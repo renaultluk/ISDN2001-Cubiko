@@ -9,8 +9,12 @@ void goOff() {
     while (!stopped) {
         vibrate(500);
         vibrate(500, false);
-        if (digitalRead(STOP_PIN) == HIGH) {
-            stopped = true;
-        }
+//        if (digitalRead(STOP_PIN) == HIGH) {
+//            stopped = true;
+//        }
     }
+}
+
+mainState hourglassFunc() {
+  // do nothing here
 }
