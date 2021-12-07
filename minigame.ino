@@ -48,16 +48,6 @@ background::background(): gameMap() {
   this->h = SCREEN_HEIGHT;
 }
 
-void background::update(int speed) {
-  this->x -= 0.6*speed;
-  if (this->x + this->w < 0) {
-    for (int i = 0; i < 4; i++) {
-      ground[i] = ground[i + 1];
-    }
-    ground[3] = sprites[random(0, 3)];
-  }
-}
-
 // ******* Obstacle ******* //
 
 obstacle::obstacle() {
@@ -196,6 +186,8 @@ void Minigame::update() {
     }
     this->current_player.update();
     this->current_map.update(this->current_speed);
+    this->current_background.update(0.6 * this->current_speed);
+    this->generate_obstacle();
 }
 
 void Minigame::draw() {
