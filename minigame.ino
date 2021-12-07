@@ -31,7 +31,7 @@ float gameMap::get_h() const {
 
 void gameMap::update(int speed) {
   this->x -= speed;
-  if (this->x + this->h < 0) {
+  if (this->x + this->w < 0) {
     for (int i = 0; i < 4; i++) {
       ground[i] = ground[i + 1];
     }
@@ -50,7 +50,7 @@ background::background(): gameMap() {
 
 void background::update(int speed) {
   this->x -= 0.6*speed;
-  if (this->x + this->h < 0) {
+  if (this->x + this->w < 0) {
     for (int i = 0; i < 4; i++) {
       ground[i] = ground[i + 1];
     }
