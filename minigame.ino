@@ -219,6 +219,7 @@ mainState minigameFunc() {
         Minigame game;
         game.setup();
         game.loop();
+        game.gameOverScreen();
     }
     in_game = false;
     pageBack();
