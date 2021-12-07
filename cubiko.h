@@ -6,12 +6,12 @@
 #define SCREEN_WIDTH  320
 #define SCREEN_HEIGHT 240
 
-#define SCROLL_CHA 2
-#define SCROLL_CHB 5
+#define SCROLL_CHA 5
+#define SCROLL_CHB 8
 
-#define BUTTON_PIN 3
+#define BUTTON_PIN 10
 
-#define VIBRATION_PIN 4
+#define VIBRATION_PIN 12
 
 // ******* Variables ******** //
 
