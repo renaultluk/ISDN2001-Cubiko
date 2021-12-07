@@ -17,15 +17,15 @@ gameMap::gameMap() {
   }
 }
 
-int gameMap::get_x() const {
+float gameMap::get_x() const {
   return this->x;
 }
 
-int gameMap::get_y() const {
+float gameMap::get_y() const {
   return this->y;
 }
 
-int gameMap::get_h() const {
+float gameMap::get_h() const {
   return this->h;
 }
 
@@ -49,19 +49,19 @@ obstacle::obstacle() {
   this->h = 0;
 }
 
-int obstacle::get_x() const {
+float obstacle::get_x() const {
   return this->x;
 }
 
-int obstacle::get_y() const {
+float obstacle::get_y() const {
   return this->y;
 }
 
-int obstacle::get_w() const {
+float obstacle::get_w() const {
   return this->w;
 }
 
-int obstacle::get_h() const {
+float obstacle::get_h() const {
   return this->h;
 }
 
@@ -87,23 +87,23 @@ player::player() {
   this->sprite_index = 0;
 }
 
-int player::get_x() const {
+float player::get_x() const {
   return this->x;
 }
 
-int player::get_y() const {
+float player::get_y() const {
   return this->y;
 }
 
-int player::get_y_speed() const {
+float player::get_y_speed() const {
   return this->y_speed;
 }
 
-int player::get_w() const {
+float player::get_w() const {
   return this->w;
 }
 
-int player::get_h() const {
+float player::get_h() const {
   return this->h;
 }
 
