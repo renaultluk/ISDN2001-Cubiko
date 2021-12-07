@@ -1,15 +1,18 @@
 #include "cubiko.h"
 
-int field_arr[3] = {0, 0, 0};   // second, minute, hour
-int field_num = 0;
+int field_arr[3] = {0, 0, 0};   // hours, minutes, seconds
+int field_num = 2;              // current field
 
 int countdown_seconds = 0;
 bool countdown_active = false;
 
-// ******* temp ******* //
+// ******* placeholder ******* //
+
 bool scrollup = true;
 bool scrolldown = true;
 bool switchtimebuttonclicked = true;
+
+// *************************** //
 
 void showTimer() {
 
@@ -25,11 +28,11 @@ void setTime() {
     float last_z = 0;
     while (!flipped(last_x, last_y, last_z)) {
         if (switchtimebuttonclicked) {
-            field_num = (field_num + 1) % 3;
+            field_num = (field_num + 2) % 3;
         }
         if (scrollup) {
-            if ((field_arr[field_num] + 1 > 59) && (field_num != 2)) {
-                field_arr[field_num+1] += 1;
+            if ((field_arr[field_num] + 1 > 59) && (field_num != 0)) {
+                field_arr[(field_num + 2) % 3] += 1;
             }
             field_arr[field_num] = (field_arr[field_num] + 1) % 60;
         } 
@@ -37,7 +40,7 @@ void setTime() {
             field_arr[field_num] = (field_arr[field_num] - 1 < 0)? 0 : field_arr[field_num] - 1;
         }
     }
-    countdown_seconds = toSeconds(field_arr[2], field_arr[1], field_arr[0]);
+    countdown_seconds = toSeconds(field_arr[0], field_arr[1], field_arr[2]);
     showTimer();
     countdown_active = true;
 }
