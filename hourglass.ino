@@ -1,10 +1,6 @@
 #include "cubiko.h"
 
-int hours = 0;
-int minutes = 0;
-int seconds = 0;
-
-int* field_arr[3] = {&seconds, &minutes, &hours};
+int field_arr[3] = {0, 0, 0};   // second, minute, hour
 int field_num = 0;
 
 int countdown_seconds = 0;
@@ -32,16 +28,16 @@ void setTime() {
             field_num = (field_num + 1) % 3;
         }
         if (scrollup) {
-            if ((*field_arr[field_num] + 1 > 59) && (field_num != 2)) {
-                *field_arr[field_num+1] += 1;
+            if ((field_arr[field_num] + 1 > 59) && (field_num != 2)) {
+                field_arr[field_num+1] += 1;
             }
-            *field_arr[field_num] = (*field_arr[field_num] + 1) % 60;
+            field_arr[field_num] = (field_arr[field_num] + 1) % 60;
         } 
         if (scrolldown) {
-            *field_arr[field_num] = (*field_arr[field_num] - 1 < 0)? 0 : *field_arr[field_num] - 1;
+            field_arr[field_num] = (field_arr[field_num] - 1 < 0)? 0 : field_arr[field_num] - 1;
         }
     }
-    countdown_seconds = toSeconds(hours, minutes, seconds);
+    countdown_seconds = toSeconds(field_arr[2], field_arr[1], field_arr[0]);
     showTimer();
     countdown_active = true;
 }
