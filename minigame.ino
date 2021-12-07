@@ -39,6 +39,25 @@ void gameMap::update(int speed) {
   }
 }
 
+// ******* Background ******* //
+
+background::background(): gameMap() {
+  this->x = 0;
+  this->y = 0;
+  this->w = SCREEN_WIDTH;
+  this->h = SCREEN_HEIGHT;
+}
+
+void background::update(int speed) {
+  this->x -= 0.6*speed;
+  if (this->x + this->h < 0) {
+    for (int i = 0; i < 4; i++) {
+      ground[i] = ground[i + 1];
+    }
+    ground[3] = sprites[random(0, 3)];
+  }
+}
+
 // ******* Obstacle ******* //
 
 obstacle::obstacle() {

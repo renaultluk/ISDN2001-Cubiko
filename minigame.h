@@ -24,7 +24,7 @@ class player {
 };
 
 class gameMap {
-    private:
+    protected:
         float x;
         float y;
         float w;
@@ -40,6 +40,12 @@ class gameMap {
         float get_y() const;
         float get_w() const;
         float get_h() const;
+        void update(int speed);
+};
+
+class background : public gameMap {
+    public:
+        background();
         void update(int speed);
 };
 
