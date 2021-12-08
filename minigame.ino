@@ -29,7 +29,7 @@ float gameMap::get_h() const {
   return this->h;
 }
 
-void gameMap::update(int speed) {
+void gameMap::update(float speed) {
   this->x -= speed;
   if (this->x + this->w < 0) {
     for (int i = 0; i < 4; i++) {
