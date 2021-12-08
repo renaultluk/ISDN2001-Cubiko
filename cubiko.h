@@ -1,6 +1,12 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+// ******* Includes ******** //
+
+#include <WiFi.h>
+#include <WifiUdp.h>
+#include <NTPClient.h>
+
 // ******* Constants ******** //
 
 #define SCREE_WIDTH  320
