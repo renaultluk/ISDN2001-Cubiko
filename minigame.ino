@@ -12,6 +12,10 @@ gameMap::gameMap() {
   this->h = 70;
   this->sprite_index = 0;
   this->ground_index = 0;
+  lv_img_set_src(this->sprites[0], "img/map.png");
+  lv_img_set_src(this->sprites[1], "img/map.png");
+  lv_img_set_src(this->sprites[2], "img/map.png");
+  lv_img_set_src(this->sprites[3], "img/map.png");
   for (int i = 0; i < 4; i++) {
     this->ground[i] = sprites[random(0, 3)];
   }
@@ -46,6 +50,13 @@ background::background(): gameMap() {
   this->y = 0;
   this->w = SCREEN_WIDTH;
   this->h = SCREEN_HEIGHT;
+  lv_img_set_src(this->sprites[0], "img/map.png");
+  lv_img_set_src(this->sprites[1], "img/map.png");
+  lv_img_set_src(this->sprites[2], "img/map.png");
+  lv_img_set_src(this->sprites[3], "img/map.png");
+  for (int i = 0; i < 4; i++) {
+    this->ground[i] = sprites[random(0, 3)];
+  }
 }
 
 // ******* Obstacle ******* //
@@ -53,6 +64,10 @@ background::background(): gameMap() {
 obstacle::obstacle() {
   this->x = SCREEN_WIDTH;
   this->y = 250;
+  lv_img_set_src(this->sprites[0], "img/map.png");
+  lv_img_set_src(this->sprites[1], "img/map.png");
+  lv_img_set_src(this->sprites[2], "img/map.png");
+  lv_img_set_src(this->sprites[3], "img/map.png");
   this->sprite_index = random(0, 3);
   this->w = 0;
   this->h = 0;
@@ -93,6 +108,10 @@ player::player() {
   this->w = 20;
   this->h = 20;
   this->y_speed = 0;
+  lv_img_set_src(this->sprites[0], "img/map.png");
+  lv_img_set_src(this->sprites[1], "img/map.png");
+  lv_img_set_src(this->sprites[2], "img/map.png");
+  lv_img_set_src(this->sprites[3], "img/map.png");
   this->sprite_index = 0;
 }
 
@@ -165,7 +184,6 @@ void Minigame::setup() {
 
 
 void Minigame::update() {
-    bool button_pressed = false;
     for (int i = 0; i < obstacle_count; i++) {   
         if (obstacles[i].collided(this->current_player)) {
             game_over = true;

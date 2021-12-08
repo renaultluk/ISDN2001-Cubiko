@@ -7,7 +7,7 @@ class player {
         float h;
         float y_speed;
         bool jumped;
-        int sprites[4]; // 0,1 = running, 2 = jumping, 3 = dead
+        lv_img sprites[4]; // 0,1 = running, 2 = jumping, 3 = dead
         int sprite_index;
 
     public:
@@ -29,9 +29,9 @@ class gameMap {
         float y;
         float w;
         float h;
-        int sprites[4];
+        lv_img sprites[4];
         int sprite_index;
-        int ground[4];
+        lv_img ground[4];
         int ground_index;
     
     public:
@@ -54,7 +54,7 @@ class obstacle {
         float y;
         float w;
         float h;
-        int sprites[4];
+        lv_img sprites[4];
         int sprite_index;
     
     public:
