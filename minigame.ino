@@ -126,16 +126,18 @@ void player::set_sprite_index(int index) {
 
 void player::update() {
     // Update player
-    if (this->jumped) {
-        this->y += this->y_speed;
-        this->y_speed += GRAVITY;
-        this->sprite_index = 2;
-    }
     if (this->y > this->baseline_y) {
         this->y = this->baseline_y;
         this->y_speed = 0;
         this->jumped = false;
-        this->sprite_index = 0? 1: 0;
+        this->sprite_index = (this->sprite_index + 1) % 2;
+    }
+    if (this->jumped) {
+        this->y += this->y_speed;
+        this->y_speed += GRAVITY;
+        this->sprite_index = 2;
+    } else {
+      this->sprite_index = (this->sprite_index + 1) % 2;
     }
 }
 
