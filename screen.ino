@@ -1,8 +1,8 @@
 #include "cubiko.h"
 
 static lv_disp_draw_buf_t draw_buf;
-static lv_color_t buf[ screenWidth * 10 ];
-TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight); /* TFT instance */
+static lv_color_t buf[ SCREEN_WIDTH * 10 ];
+TFT_eSPI tft = TFT_eSPI(SCREEN_WIDTH, SCREEN_HEIGHT); /* TFT instance */
 
 void my_disp_flush( lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p )
 {
@@ -48,13 +48,13 @@ void displayInit(){
     uint16_t calData[5] = { 437, 3509, 269, 3588, 0 };
     tft.setTouch(calData);
 
-    lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * 10 );
+    lv_disp_draw_buf_init( &draw_buf, buf, NULL, SCREEN_WIDTH * 10 );
 
     /*Initialize the display*/
     static lv_disp_drv_t disp_drv;
     lv_disp_drv_init( &disp_drv );
-    disp_drv.hor_res = screenWidth;
-    disp_drv.ver_res = screenHeight;
+    disp_drv.hor_res = SCREEN_WIDTH;
+    disp_drv.ver_res = SCREEN_HEIGHT;
     disp_drv.flush_cb = my_disp_flush;
     disp_drv.draw_buf = &draw_buf;
     lv_disp_drv_register( &disp_drv );
