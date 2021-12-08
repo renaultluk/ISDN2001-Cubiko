@@ -171,7 +171,7 @@ void Minigame::update() {
             game_over = true;
             break;
         }
-        else if (obstacles[i].get_x() + obstacles[i].get_h() < 0) {
+        else if (obstacles[i].get_x() + obstacles[i].get_w() < 0) {
             dequeue_obstacle(i);
             this->score++;
             if (this->score % LEVEL_UP_INCREMENT == 0) {
