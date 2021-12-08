@@ -32,7 +32,7 @@ float gameMap::get_h() const {
 void gameMap::update(float speed) {
   this->x -= speed;
   if (this->x + this->w < 0) {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
       ground[i] = ground[i + 1];
     }
     ground[3] = sprites[random(0, 3)];
