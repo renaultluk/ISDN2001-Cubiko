@@ -1,10 +1,16 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+// ******* Includes ******** //
+
+#include <Arduino.h>
+#include <lvgl.h>
+#include <TFT_eSPI.h>
+
 // ******* Constants ******** //
 
-#define SCREE_WIDTH  320
-#define SCREE_HEIGHT 240
+#define SCREEN_WIDTH  320
+#define SCREEN_HEIGHT 240
 
 // ******* Finite State Machine ******** //
 
