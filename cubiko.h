@@ -12,6 +12,20 @@
 #define SCREEN_WIDTH  240
 #define SCREEN_HEIGHT 320
 
+#define SCROLL_CHA 5
+#define SCROLL_CHB 8
+
+#define BUTTON_PIN 10
+
+#define VIBRATION_PIN 12
+
+// ******* Variables ******** //
+
+bool button_pressed = 0;
+bool scrolled = 0;
+
+int scroll_direction = 0;
+
 // ******* Finite State Machine ******** //
 
 typedef enum {
@@ -37,7 +51,10 @@ mainState pageBack();
 
 bool shaking();
 
-// ******* Buttons ******* //
+// ******* Interrupts ******* //
+
+void buttonRoutine();
+void scrollRoutine();
 
 // ******* Hourglass ******* //
 
