@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include "protothreads.h"
+
 // ******* Constants ******** //
 
 #define SCREEN_WIDTH  320
@@ -15,6 +17,7 @@
 
 #define TOUCH_QUEUE_LENGTH 5
 #define TOUCH_THRESHOLD   70
+#define TOUCH_MIN 10
 const int TOUCH_PADS[3] = {T4, T5, T6};
 
 // ******* Variables ******** //
@@ -33,6 +36,7 @@ int touch_queue_tail = 0;
 typedef enum {
     CASE_INIT,
     CASE_SHAKING,
+    CASE_FACE,
     CASE_HOURGLASS,
     CASE_MINIGAME,
     CASE_IDLE,
@@ -68,5 +72,9 @@ mainState hourglassFunc();
 // ******* Minigame ******* //
 
 mainState minigameFunc();
+
+// ******* Face ******* //
+
+mainState faceFunc();
 
 #endif

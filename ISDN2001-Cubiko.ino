@@ -32,6 +32,9 @@ void loop() {
             case CASE_INIT:
                 state = initFunc();
                 break;
+            case CASE_FACE:
+                state = faceFunc();
+                break;
             case CASE_SHAKING:
                 state = shakingFunc();
                 break;
