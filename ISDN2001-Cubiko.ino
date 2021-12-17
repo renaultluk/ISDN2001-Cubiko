@@ -18,9 +18,10 @@ mainState idleFunc() {
 void setup() {
     attachInterrupt(BUTTON_PIN, buttonRoutine, RISING);
     attachInterrupt(SCROLL_CHA, scrollRoutine, RISING);
-    for (int i = 0; i < 3; i++) {
-        touchAttachInterrupt(TOUCH_PADS[i], touchPadRoutine, RISING);
-    }
+
+    touchAttachInterrupt(T4, T4touchPadRoutine, TOUCH_THRESHOLD);
+    touchAttachInterrupt(T5, T5touchPadRoutine, TOUCH_THRESHOLD);
+    touchAttachInterrupt(T6, T6touchPadRoutine, TOUCH_THRESHOLD);
 }
 
 void loop() {

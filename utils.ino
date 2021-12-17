@@ -30,8 +30,24 @@ void scrollRoutine() {
     }
 }
 
-void touchPadRoutine() {
+void T4touchPadRoutine() {
     touch_queue[touch_queue_tail] = T4;
+    touch_queue_tail = (touch_queue_tail + 1) % TOUCH_QUEUE_LENGTH;
+    if (touch_queue_tail == touch_queue_head) {
+        touch_queue_head = (touch_queue_head + 1) % TOUCH_QUEUE_LENGTH;
+    }
+}
+
+void T5touchPadRoutine() {
+    touch_queue[touch_queue_tail] = T5;
+    touch_queue_tail = (touch_queue_tail + 1) % TOUCH_QUEUE_LENGTH;
+    if (touch_queue_tail == touch_queue_head) {
+        touch_queue_head = (touch_queue_head + 1) % TOUCH_QUEUE_LENGTH;
+    }
+}
+
+void T6touchPadRoutine() {
+    touch_queue[touch_queue_tail] = T6;
     touch_queue_tail = (touch_queue_tail + 1) % TOUCH_QUEUE_LENGTH;
     if (touch_queue_tail == touch_queue_head) {
         touch_queue_head = (touch_queue_head + 1) % TOUCH_QUEUE_LENGTH;

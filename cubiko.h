@@ -14,6 +14,7 @@
 #define VIBRATION_PIN 12
 
 #define TOUCH_QUEUE_LENGTH 5
+#define TOUCH_THRESHOLD   70
 const int TOUCH_PADS[3] = {T4, T5, T6};
 
 // ******* Variables ******** //
@@ -56,7 +57,9 @@ bool shaking();
 
 void buttonRoutine();
 void scrollRoutine();
-void touchPadRoutine();
+void T4touchPadRoutine();
+void T5touchPadRoutine();
+void T6touchPadRoutine();
 
 // ******* Hourglass ******* //
 
