@@ -35,7 +35,7 @@ int pageStackSize = 0;
 
 // ******* Utils ******* //
 
-void vibrate(int ms, bool vib = true);
+void vibrate(int ms, int strength = 150);
 
 void navigateTo(mainState state);
 

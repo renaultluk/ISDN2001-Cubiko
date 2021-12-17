@@ -1,9 +1,9 @@
 #include "cubiko.h"
 
-void vibrate(int ms, bool vib) {
-    digitalWrite(VIBRATION_PIN, vib);
+void vibrate(int ms, int strength) {
+    analogWrite(VIBRATION_PIN, strength);
     delay(ms);
-    digitalWrite(VIBRATION_PIN, LOW);
+    analogWrite(VIBRATION_PIN, 0);
 }
 
 void navigateTo(mainState currentState) {
