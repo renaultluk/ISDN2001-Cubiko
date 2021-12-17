@@ -35,7 +35,7 @@ int FacePetThread(struct pt *pt) {
         for (int i = 0; i < 3; i++) {
             int strength = touchRead(TOUCH_PADS[i]);
             if (strength < TOUCH_THRESHOLD) {
-                if (strength > maxStrength) {
+                if (strength < maxStrength) {
                     maxStrength = strength;
                 }
             }
