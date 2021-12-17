@@ -6,8 +6,8 @@
 #define SCREEN_WIDTH  320
 #define SCREEN_HEIGHT 240
 
-#define SCROLL_CHA 5
-#define SCROLL_CHB 8
+#define SCROLL_CHA 32
+#define SCROLL_CHB 33
 
 #define BUTTON_PIN 10
 
