@@ -13,12 +13,19 @@
 
 #define VIBRATION_PIN 12
 
+#define TOUCH_QUEUE_LENGTH 5
+const int TOUCH_PADS[3] = {T4, T5, T6};
+
 // ******* Variables ******** //
 
 bool button_pressed = 0;
 bool scrolled = 0;
 
 int scroll_direction = 0;
+
+int touch_queue[TOUCH_QUEUE_LENGTH];
+int touch_queue_head = 0;
+int touch_queue_tail = 0;
 
 // ******* Finite State Machine ******** //
 
@@ -49,6 +56,7 @@ bool shaking();
 
 void buttonRoutine();
 void scrollRoutine();
+void touchPadRoutine();
 
 // ******* Hourglass ******* //
 

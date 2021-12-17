@@ -29,3 +29,11 @@ void scrollRoutine() {
         scroll_direction = -1;
     }
 }
+
+void touchPadRoutine() {
+    touch_queue[touch_queue_tail] = T4;
+    touch_queue_tail = (touch_queue_tail + 1) % TOUCH_QUEUE_LENGTH;
+    if (touch_queue_tail == touch_queue_head) {
+        touch_queue_head = (touch_queue_head + 1) % TOUCH_QUEUE_LENGTH;
+    }
+}
