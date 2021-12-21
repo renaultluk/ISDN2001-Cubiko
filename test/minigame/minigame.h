@@ -1,11 +1,9 @@
-#include "cubiko.h"
+#include <TFT_eSPI.h>
+#include <SD.h>
 
 int highscore = 0;
 
 lv_obj_t * minigameScreen;
-
-extern const lv_img_dsc_t cube_run_player_run;
-//extern const lv_img_dsc_t cube_run_map;
 
 class player {
     private:
@@ -17,7 +15,7 @@ class player {
         float y_speed;
         bool jumped;
         lv_obj_t * current_sprite;
-        String sprites[3]; // 0 = running, 1 = jumping, 2 = dead
+        lv_obj_t * sprites[3]; // 0 = running, 1 = jumping, 2 = dead
         int sprite_index;
 
     public:

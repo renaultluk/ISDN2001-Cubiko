@@ -16,12 +16,15 @@ mainState idleFunc() {
 }
 
 void setup() {
+    Serial.begin(115200);
     attachInterrupt(BUTTON_PIN, buttonRoutine, RISING);
     attachInterrupt(SCROLL_CHA, scrollRoutine, RISING);
+
+    displayInit();
 }
 
 void loop() {
-    mainState state = CASE_INIT;
+    mainState state = CASE_MINIGAME;
 
     while (true) {
         switch (state) {

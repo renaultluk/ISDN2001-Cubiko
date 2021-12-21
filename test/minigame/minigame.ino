@@ -36,8 +36,7 @@ gameMap::gameMap() {
   this->y = 0;
   this->h = 70;
   this->current_ground = lv_img_create(minigameScreen);
-//  LV_IMG_DECLARE(cube_run_map);
-//  lv_img_set_src(this->current_ground, &cube_run_map);
+  lv_img_set_src(this->current_ground, "/minigame_sprites/Map.png");
 }
 
 float gameMap::get_x() const {
@@ -95,22 +94,15 @@ float gameMap::get_h() const {
 obstacle::obstacle() {
   this->x = SCREEN_WIDTH;
   this->y = 250;
-//  for (int i = 0; i < 4; i++) {
-//    this->sprites[i] = lv_img_create(minigameScreen);
-//  }
-//  this->sprites[0] = "S:/minigame_sprites/Large_Obstacle.png";
-//  this->sprites[1] = "S:/minigame_sprites/Small_Obstacle.png";
+  for (int i = 0; i < 4; i++) {
+    this->sprites[i] = lv_img_create(minigameScreen);
+  }
+  this->sprites[0] = "/minigame_sprites/Large_Obstacle.png";
+  this->sprites[1] = "/minigame_sprites/Small_Obstacle.png";
   this->sprite_index = random(0, 1);
-  this->current_sprite = lv_img_create(minigameScreen);
-//  switch (sprite_index) {
-//    case 0:
-//      lv_img_set_src(this->current_sprite, "S:/minigame_sprites/Large_Obstacle.png");
-//      break;
-//    case 1:
-//      lv_img_set_src(this->current_sprite, "S:/minigame_sprites/Small_Obstacle.png");
-//  }
-  this->w = 20;
-  this->h = 20;
+  lv_img_set_src(this->current_sprite, sprites[sprite_index]);
+  this->w = lv_img_get_width(this->current_sprite);
+  this->h = lv_img_get_height(this->current_sprite);
 }
 
 float obstacle::get_x() const {
@@ -131,7 +123,7 @@ float obstacle::get_h() const {
 
 void obstacle::update(int speed) {
   this->x -= speed;
-  lv_img_set_offset_x(this->current_sprite, -speed);
+  lv_img_offset_x(this->current_sprite, -speed);
 }
 
 bool obstacle::collided(player p) {
@@ -149,17 +141,16 @@ player::player() {
   this->w = 20;
   this->h = 20;
   this->y_speed = 0;
-//  for (int i = 0; i < 4; i++) {
-//    this->sprites[i] = lv_img_create(minigameScreen);
-//  }
-  this->sprites[0] = "S:/minigame_sprites/Run.png";
-  this->sprites[1] = "S:/minigame_sprites/Jump.png";
-  this->sprites[2] = "S:/minigame_sprites/Dead.png";
-  this->sprite_index = 0;
+  for (int i = 0; i < 4; i++) {
+    this->sprites[i] = lv_img_create(minigameScreen);
+  }
+//   this->sprites[0] = "/minigame_sprites/Run.png";
+//   this->sprites[1] = "/minigame_sprites/Jump.png";
+//   this->sprites[2] = "/minigame_sprites/Dead.png";
   LV_IMG_DECLARE(cube_run_player_run);
-  this->current_sprite = lv_img_create(minigameScreen);
-  lv_img_set_src(this->current_sprite, &cube_run_player_run);
-  Serial.println("Player sprite set");
+  lv_img_set_src(this->sprites[0], &cube_run_player_run);
+  this->sprite_index = 0;
+  lv_img_set_src(this->current_sprite, sprites[sprite_index]);
   lv_obj_set_pos(this->current_sprite, this->x, this->y);
 }
 
@@ -200,7 +191,7 @@ void player::update() {
     }
     if (this->jumped) {
         this->y += this->y_speed;
-        lv_img_set_offset_y(current_sprite, this->y_speed);
+        lv_img_offset_y(current_sprite, this->y_speed);
         this->y_speed += GRAVITY;
     } else {
       if (button_pressed) {
@@ -208,7 +199,7 @@ void player::update() {
         button_pressed = false;
       }
       this->sprite_index = 1;
-      lv_img_set_src(this->current_sprite, &cube_run_player_run);
+      lv_img_set_src(this->current_sprite, this->sprites[this->sprite_index]);
     }
 }
 
@@ -216,7 +207,7 @@ void player::jump() {
     this->y_speed = -10;
     this->jumped = true;
     this->sprite_index = 2;
-    lv_img_set_src(this->current_sprite, "S:/minigame_sprites/Jump.png");
+    lv_img_set_src(this->current_sprite, this->sprites[this->sprite_index]);
 }
 
 // ******* Game ******* //
@@ -245,7 +236,7 @@ void Minigame::update() {
         else if (obstacles[i].get_x() + obstacles[i].get_w() < 0) {
             dequeue_obstacle(i);
             this->score++;
-//            lv_label_set_text(scoreLabel, "Highscore " + String(highscore) + " \t Score: " + String(this->score));
+            lv_label_set_text(scoreLabel, "Highscore " + String(highscore) + " \t Score: " + String(this->score));
             if (this->score % LEVEL_UP_INCREMENT == 0) {
                 this->level++;
                 this->current_speed = this->baseline_speed * (1 + this->level/10);
@@ -298,24 +289,23 @@ void Minigame::dequeue_obstacle(int index) {
 void loadMinigameScreen() {
   minigameScreen = lv_obj_create(NULL);
   lv_obj_set_size(minigameScreen, LV_HOR_RES, LV_VER_RES);
-//  lv_obj_set_style(minigameScreen, &lv_style_scr);
+  lv_obj_set_style(minigameScreen, &lv_style_scr);
   lv_scr_load(minigameScreen);
 
   lv_obj_t * scoreLabel = lv_label_create(minigameScreen);
   lv_obj_align_to(scoreLabel, minigameScreen, LV_ALIGN_TOP_RIGHT, -10, 10);
-  lv_label_set_text(scoreLabel, "Highscore  \t Score: ");
+  lv_label_set_text(scoreLabel, "Highscore " + String(highscore) + " \t Score: " + String(0));
 
   lv_obj_t * titleLabel = lv_label_create(minigameScreen);
   lv_obj_align_to(titleLabel, minigameScreen, LV_ALIGN_CENTER, 0, -20);
-  lv_label_set_text(titleLabel, "CUBLET RUN!");
+  lv_label_set_text(titleLabel, "DINO RUN!");
 
   lv_obj_t * descLabel = lv_label_create(minigameScreen);
   lv_obj_align_to(descLabel, minigameScreen, LV_ALIGN_CENTER, 0, 20);
   lv_label_set_text(descLabel, "Press the button to start");
 }
 
-mainState minigameFunc() {
-    loadMinigameScreen();
+void loop() {
     bool in_game = true;
     while (in_game) {
         Minigame game;

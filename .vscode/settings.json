@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "lv_port_fs.h": "c",
+        "lvgl.h": "c"
+    }
+}
