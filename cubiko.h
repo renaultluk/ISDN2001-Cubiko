@@ -7,6 +7,8 @@
 #include <lvgl.h>
 #include <TFT_eSPI.h>
 #include <SD.h>
+#include <JPEGDecoder.h>
+#include <TJpg_Decoder.h>
 
 // ******* Constants ******** //
 
@@ -19,6 +21,15 @@
 #define BUTTON_PIN 25
 
 #define VIBRATION_PIN 12
+
+#define SD_CS 15
+#define SD_CLK 14
+#define SD_MISO 12
+#define SD_MOSI 13
+
+TFT_eSPI tft = TFT_eSPI();
+
+//SPIClass spiSD(HSPI);
 
 // ******* Variables ******** //
 
@@ -72,5 +83,15 @@ mainState minigameFunc();
 void my_disp_flush( lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p );
 
 void displayInit();
+
+// ******* Storage ******* //
+
+void storageInit();
+
+void drawSdJpeg(const char *filename, int xpos, int ypos);
+
+void DMAInit();
+
+void drawDMA(const uint8_t img[], int xpos, int ypos);
 
 #endif

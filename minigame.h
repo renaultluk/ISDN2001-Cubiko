@@ -1,4 +1,6 @@
 #include "cubiko.h"
+#include "minigame_run.h"
+#include "minigame_jump.h"
 
 int highscore = 0;
 
@@ -16,8 +18,7 @@ class player {
         float h;
         float y_speed;
         bool jumped;
-        lv_obj_t * current_sprite;
-        String sprites[3]; // 0 = running, 1 = jumping, 2 = dead
+        uint8_t* sprites[3]; // 0 = running, 1 = jumping, 2 = dead
         int sprite_index;
 
     public:
@@ -28,6 +29,7 @@ class player {
         float get_h() const;
         float get_y_speed() const;
         int get_sprite_index() const;
+        uint8_t* get_current_sprite() const;
         void set_sprite_index(int);
         void update();
         void jump();
@@ -43,7 +45,7 @@ class gameMap {
         // int sprite_index;
         // lv_obj_t * ground[4];
         // int ground_index;
-        lv_obj_t * current_ground;
+        char* current_ground;
     
     public:
         gameMap();
@@ -51,6 +53,7 @@ class gameMap {
         float get_y() const;
         float get_w() const;
         float get_h() const;
+        char* get_current_ground() const;
         void update(float speed);
 };
 
@@ -65,8 +68,7 @@ class obstacle {
         float y;
         float w;
         float h;
-        lv_obj_t * current_sprite;
-        String sprites[2];
+        char* sprites[2];
         int sprite_index;
     
     public:
@@ -75,6 +77,7 @@ class obstacle {
         float get_y() const;
         float get_w() const;
         float get_h() const;
+        char* get_current_sprite() const;
         void update(int speed);
         bool collided(player p);
 };
