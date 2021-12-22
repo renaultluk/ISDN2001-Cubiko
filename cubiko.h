@@ -6,6 +6,7 @@
 //#include <Arduino.h>
 //#include <lvgl.h>
 #include <TFT_eSPI.h>
+#include <SPI.h>
 #include <SD.h>
 #include <JPEGDecoder.h>
 #include <TJpg_Decoder.h>
@@ -29,7 +30,7 @@
 
 TFT_eSPI tft = TFT_eSPI();
 
-//SPIClass spiSD(HSPI);
+SPIClass spiSD(HSPI);
 
 // ******* Variables ******** //
 

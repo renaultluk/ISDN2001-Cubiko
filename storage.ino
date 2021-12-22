@@ -2,7 +2,7 @@
 
 
 void storageInit() {
-//    spiSD.begin(SD_CLK, SD_MISO, SD_MOSI, SD_CS);
+   spiSD.begin(SD_CLK, SD_MISO, SD_MOSI, SD_CS);
     digitalWrite(5, HIGH);
     if (!SD.begin()) {
         Serial.println("Card Mount Failed");
