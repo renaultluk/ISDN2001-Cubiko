@@ -3,8 +3,8 @@
 
 void storageInit() {
    spiSD.begin(SD_CLK, SD_MISO, SD_MOSI, SD_CS);
-    digitalWrite(5, HIGH);
-    if (!SD.begin()) {
+    digitalWrite(SD_CS, HIGH);
+    if (!SD.begin(SD_CS, spiSD)) {
         Serial.println("Card Mount Failed");
         return;
     }
@@ -90,7 +90,7 @@ void drawSdJpeg(const char *filename, int xpos, int ypos) {
   File jpegFile = SD.open( filename, FILE_READ);  // or, file handle reference for SD library
  
   if ( !jpegFile ) {
-//    Serial.print("ERROR: File \""); Serial.print(filename); Serial.println ("\" not found!");
+    Serial.print("ERROR: File \""); Serial.print(filename); Serial.println ("\" not found!");
     return;
   }
 
