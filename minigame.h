@@ -4,9 +4,9 @@
 
 int highscore = 0;
 
-lv_obj_t * minigameScreen;
+//lv_obj_t * minigameScreen;
 
-extern const lv_img_dsc_t cube_run_player_run;
+//extern const lv_img_dsc_t cube_run_player_run;
 //extern const lv_img_dsc_t cube_run_map;
 
 class player {

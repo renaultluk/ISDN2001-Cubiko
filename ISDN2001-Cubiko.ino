@@ -21,7 +21,7 @@ void setup() {
     attachInterrupt(SCROLL_CHA, scrollRoutine, RISING);
 
     displayInit();
-//    storageInit();
+    storageInit();
     DMAInit();
 }
 

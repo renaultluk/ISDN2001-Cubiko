@@ -1,36 +1,37 @@
 #include "cubiko.h"
 
 
-//void storageInit() {
+void storageInit() {
 //    spiSD.begin(SD_CLK, SD_MISO, SD_MOSI, SD_CS);
-//    if (!SD.begin(SD_CS, spiSD)) {
-//        Serial.println("Card Mount Failed");
-//        return;
-//    }
-//    uint8_t cardType = SD.cardType();
-//
-//    if (cardType == CARD_NONE) {
-//        Serial.println("No SD card attached");
-//        return;
-//    }
-//
-//    Serial.print("SD Card Type: ");
-//    if (cardType == CARD_MMC) {
-//        Serial.println("MMC");
-//    } else if (cardType == CARD_SD) {
-//        Serial.println("SDSC");
-//    } else if (cardType == CARD_SDHC) {
-//        Serial.println("SDHC");
-//    } else {
-//        Serial.println("UNKNOWN");
-//    }
-//
-//    uint64_t cardSize = SD.cardSize() / (1024 * 1024);
-//    Serial.print("SD Card Size: "); Serial.println(cardSize);
-//
-//    Serial.println("initialisation done.");
-//}
-//
+    digitalWrite(5, HIGH);
+    if (!SD.begin()) {
+        Serial.println("Card Mount Failed");
+        return;
+    }
+    uint8_t cardType = SD.cardType();
+
+    if (cardType == CARD_NONE) {
+        Serial.println("No SD card attached");
+        return;
+    }
+
+    Serial.print("SD Card Type: ");
+    if (cardType == CARD_MMC) {
+        Serial.println("MMC");
+    } else if (cardType == CARD_SD) {
+        Serial.println("SDSC");
+    } else if (cardType == CARD_SDHC) {
+        Serial.println("SDHC");
+    } else {
+        Serial.println("UNKNOWN");
+    }
+
+    uint64_t cardSize = SD.cardSize() / (1024 * 1024);
+    Serial.print("SD Card Size: "); Serial.println(cardSize);
+
+    Serial.println("initialisation done.");
+}
+
 bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)
 {
    // Stop further decoding as image is running off bottom of screen
@@ -58,8 +59,9 @@ void drawDMA(const uint8_t img[], int xpos, int ypos) {
   
     // Get the width and height in pixels of the jpeg if you wish:
   uint16_t w = 0, h = 0;
+  Serial.print("Size: "); Serial.print(sizeof(img));
   TJpgDec.getJpgSize(&w, &h, img, sizeof(img));
-  Serial.print("Width = "); Serial.print(w); Serial.print(", height = "); Serial.println(h);
+  Serial.print(", Width = "); Serial.print(w); Serial.print(", height = "); Serial.println(h);
 
   // Time recorded for test purposes
   uint32_t dt = millis();
