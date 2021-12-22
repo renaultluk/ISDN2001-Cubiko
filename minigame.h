@@ -18,7 +18,7 @@ class player {
         float h;
         float y_speed;
         bool jumped;
-        uint8_t* sprites[3]; // 0 = running, 1 = jumping, 2 = dead
+        char* sprites[3]; // 0 = running, 1 = jumping, 2 = dead
         int sprite_index;
 
     public:
@@ -29,7 +29,7 @@ class player {
         float get_h() const;
         float get_y_speed() const;
         int get_sprite_index() const;
-        uint8_t* get_current_sprite() const;
+        char* get_current_sprite() const;
         void set_sprite_index(int);
         void update();
         void jump();

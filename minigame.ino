@@ -149,9 +149,9 @@ player::player() {
 //  for (int i = 0; i < 4; i++) {
 //    this->sprites[i] = lv_img_create(minigameScreen);
 //  }
-  // this->sprites[0] = "/Run.jpg";
-  // this->sprites[1] = "/Jump.jpg";
-  // this->sprites[2] = "/Dead.jpg";
+  this->sprites[0] = "/Run.jpg";
+  this->sprites[1] = "/Jump.jpg";
+  this->sprites[2] = "/Dead.jpg";
 //  this->sprites[0] = &minigame_player_run;
 //  this->sprites[1] = &minigame_player_jump;
   this->sprite_index = 0;
@@ -181,7 +181,7 @@ int player::get_sprite_index() const {
   return this->sprite_index;
 }
 
-uint8_t* player::get_current_sprite() const {
+char* player::get_current_sprite() const {
   return this->sprites[this->sprite_index];
 }
 
@@ -257,12 +257,12 @@ void Minigame::update() {
 }
 
 void Minigame::draw() {
-    // drawSdJpeg(this->current_map.get_current_ground(), 0, 0);
+    drawSdJpeg(this->current_map.get_current_ground(), 0, 0);
     for (int i = 0; i < obstacle_count; i++) {
-        // drawSdJpeg(this->obstacles[i].get_current_sprite(), obstacles[i].get_x(), obstacles[i].get_y());
+        drawSdJpeg(this->obstacles[i].get_current_sprite(), obstacles[i].get_x(), obstacles[i].get_y());
     }
-    // drawSdJpeg(this->current_player.get_current_sprite(), this->current_player.get_x(), this->current_player.get_y());
-    drawDMA(minigame_player_run, this->current_player.get_x(), this->current_player.get_y());
+    drawSdJpeg(this->current_player.get_current_sprite(), this->current_player.get_x(), this->current_player.get_y());
+    // drawDMA(minigame_player_run, this->current_player.get_x(), this->current_player.get_y());
 }
 
 void Minigame::loop() {
